@@ -1,2 +1,5 @@
-- authentication with Clerk
-- setting up database with Prisma
+- connected to Supabase
+- created db.ts hot reload protection for development
+- added input | form | dialog from shadcn-ui
+- created initial-modal of server creation
+- added mounted-check utility @lib to avoid hydration errors
