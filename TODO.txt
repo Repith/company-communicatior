@@ -1,5 +1,23 @@
-- connected to Supabase
-- created db.ts hot reload protection for development
-- added input | form | dialog from shadcn-ui
-- created initial-modal of server creation
-- added mounted-check utility @lib to avoid hydration errors
+- added axios | uuid | @types/uuid | zustand
+- added tooltop | separator | scroll-area from shadcn-ui
+- created uploadthing utility @lib for file uploads 
+    + middleware update for public routes
+    + proper api core and route
+- created file-upload component
+- created current-profile utility @lib
+- api
+    + created servers route
+- created (main) with layout.tsx
+- created navigation
+    + sidebar
+    + action
+    + action tooltip 
+    + item
+- created hooks 
+    + use-modal-store
+- created create-server-modal
+- created server components
+    + sidebar
+    + header
+- created types file to store additional types
+- created invite modal with copy button and new link generation
