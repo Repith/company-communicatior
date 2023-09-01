@@ -1,8 +1,9 @@
 "use client";
 
-import { CreateServerModal } from "@/components/modals/create-server-modal";
 import { MountedCheck } from "@/lib/mounted-check";
-import { InviteModal } from "../modals/invite-modal";
+import { CreateServerModal } from "@/components/modals/create-server-modal";
+import { InviteModal } from "@/components/modals/invite-modal";
+import { EditServerModal } from "@/components/modals/edit-server-modal copy";
 
 export const ModalProvider = () => {
   return (
@@ -10,6 +11,7 @@ export const ModalProvider = () => {
       <MountedCheck>
         <CreateServerModal />
         <InviteModal />
+        <EditServerModal />
       </MountedCheck>
     </>
   );
