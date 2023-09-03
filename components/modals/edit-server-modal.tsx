@@ -30,12 +30,8 @@ import { Input } from "@/components/ui/input";
 import FileUpload from "@/components/file-upload";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(1, { message: "Please enter a server name." }),
-  imageUrl: z
-    .string()
-    .min(1, { message: "Please upload a server image" }),
+  name: z.string().min(1, { message: "Please enter a server name." }),
+  imageUrl: z.string().min(1, { message: "Please upload a server image" }),
 });
 
 export const EditServerModal = () => {
@@ -67,14 +63,9 @@ export const EditServerModal = () => {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (
-    values: z.infer<typeof formSchema>
-  ) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(
-        `/api/servers/${server?.id}`,
-        values
-      );
+      await axios.patch(`/api/servers/${server?.id}`, values);
 
       form.reset();
       router.refresh();
@@ -93,15 +84,12 @@ export const EditServerModal = () => {
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             {" "}
-            Give your server a name and an image to get
-            started. You can always change it later.
+            Give your server a name and an image to get started. You can always
+            change it later.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="px-6 space-y-8">
               <div className="flex items-center justify-center text-center">
                 <FormField
@@ -142,10 +130,7 @@ export const EditServerModal = () => {
               />
             </div>
             <DialogFooter className="px-6 py-4 bg-gray-100">
-              <Button
-                variant="primary"
-                disabled={isLoading}
-              >
+              <Button variant="primary" disabled={isLoading}>
                 Save
               </Button>
             </DialogFooter>
