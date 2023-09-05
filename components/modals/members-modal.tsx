@@ -92,7 +92,7 @@ export const MembersModal = () => {
         },
       });
 
-      const response = await axios.put(url, { role });
+      const response = await axios.patch(url, { role });
       router.refresh();
       onOpen("members", { server: response.data });
     } catch (error) {
