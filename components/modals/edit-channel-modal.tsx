@@ -5,7 +5,7 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 
 import { useModal } from "@/hooks/use-modal-store";
 import { ChannelType } from "@prisma/client";
@@ -44,7 +44,7 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelType),
 });
 
-export const CreateChannelModal = () => {
+export const EditChannelModal = () => {
   const iconMap = {
     [ChannelType.TEXT]: (
       <Hash className="w-5 h-5 text-primary/70" />
@@ -68,13 +68,13 @@ export const CreateChannelModal = () => {
 
   const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
-  const params = useParams();
 
-  const isModalOpen = isOpen && type === "createChannel";
-  const { channelType } = data;
+  const isModalOpen = isOpen && type === "editChannel";
+  const { channel, server } = data;
 
-  const [channelIcon, setChannelIcon] =
-    useState(channelType);
+  const [channelIcon, setChannelIcon] = useState(
+    channel?.type
+  );
 
   const handleClose = () => {
     form.reset();
@@ -85,18 +85,17 @@ export const CreateChannelModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: channelType || ChannelType.TEXT,
+      type: channel?.type || ChannelType.TEXT,
     },
   });
 
   useEffect(() => {
-    if (channelType) {
-      form.setValue("type", channelType);
-      setChannelIcon(channelType);
-    } else {
-      form.setValue("type", ChannelType.TEXT);
+    if (channel) {
+      form.setValue("name", channel.name);
+      form.setValue("type", channel.type);
+      setChannelIcon(channel.type);
     }
-  }, [channelType, form]);
+  }, [form, channel]);
 
   const isLoading = form.formState.isSubmitting;
 
@@ -105,13 +104,13 @@ export const CreateChannelModal = () => {
   ) => {
     try {
       const url = qs.stringifyUrl({
-        url: "/api/channels",
+        url: `/api/channels/${channel?.id}`,
         query: {
-          serverId: params?.serverId,
+          serverId: server?.id,
         },
       });
 
-      await axios.post(url, values);
+      await axios.patch(url, values);
 
       form.reset();
       router.refresh();
@@ -126,7 +125,7 @@ export const CreateChannelModal = () => {
       <DialogContent className="p-0 overflow-hidden dark:bg-[#2B2D31]">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-2xl font-bold text-left ">
-            Create Channel
+            Edit Channel
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -145,7 +144,12 @@ export const CreateChannelModal = () => {
                     </FormLabel>
                     <RadioGroup
                       disabled={isLoading}
-                      onValueChange={field.onChange}
+                      onValueChange={(
+                        newValue: ChannelType
+                      ) => {
+                        field.onChange(newValue);
+                        setChannelIcon(newValue);
+                      }}
                       defaultValue={field.value}
                     >
                       <>
@@ -160,9 +164,6 @@ export const CreateChannelModal = () => {
                                   value={type}
                                   id={type}
                                   className="hidden peer"
-                                  onClick={() =>
-                                    setChannelIcon(type)
-                                  }
                                 />
                               </FormControl>
                               <FormLabel
@@ -227,7 +228,7 @@ export const CreateChannelModal = () => {
                 variant="primary"
                 disabled={isLoading}
               >
-                Create
+                Edit
               </Button>
             </DialogFooter>
           </form>

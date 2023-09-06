@@ -54,14 +54,14 @@ export const InviteModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="p-0 overflow-hidden text-black bg-white">
+      <DialogContent className="p-0 overflow-hidden dark:bg-[#2B2D31]">
         <DialogHeader className="px-6 pt-8">
-          <DialogTitle className="text-2xl font-bold text-center">
+          <DialogTitle className="text-2xl font-bold text-left ">
             Invite People
           </DialogTitle>
         </DialogHeader>
-        <div className="p-6">
-          <Label className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
+        <div className="px-6 py-4">
+          <Label className="text-xs font-bold uppercase text-zinc-600 dark:text-zinc-400 ">
             Server invite link
             <div className="flex items-center mt-2 gap-x-2">
               <Input

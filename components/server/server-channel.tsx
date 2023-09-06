@@ -10,9 +10,9 @@ import {
   Edit,
   Hash,
   Lock,
-  Mic,
   Trash,
   Video,
+  Volume2,
 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
@@ -31,7 +31,7 @@ interface ServerChannelProps {
 
 const iconMap = {
   [ChannelType.TEXT]: Hash,
-  [ChannelType.AUDIO]: Mic,
+  [ChannelType.AUDIO]: Volume2,
   [ChannelType.VIDEO]: Video,
 };
 

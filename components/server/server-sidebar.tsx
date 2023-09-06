@@ -13,9 +13,9 @@ import { ServerMember } from "./server-member";
 import {
   Crown,
   Hash,
-  Mic,
   ShieldCheck,
   Video,
+  Volume2,
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +26,7 @@ interface ServerSidebarProps {
 
 const iconMap = {
   [ChannelType.TEXT]: <Hash className="w-4 h-4 mr-2" />,
-  [ChannelType.AUDIO]: <Mic className="w-4 h-4 mr-2" />,
+  [ChannelType.AUDIO]: <Volume2 className="w-4 h-4 mr-2" />,
   [ChannelType.VIDEO]: <Video className="w-4 h-4 mr-2" />,
 };
 

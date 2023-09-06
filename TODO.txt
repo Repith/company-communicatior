@@ -1,13 +1,5 @@
-- created 
-    + members role change and kick + API routing
-    + channel creation and deletion + API routing
-    + leaving a channel option for guests + API routing
-    + server search  + keyboard shortcut
-    + server channel list + editing | deleting 
-    + server member list
-    + server section  
-- added from shadcn-ui
-    + command
-    + select
-
-TODO - member delete/edit API routing
+- Major UI adjustments (Light/Dark mode) 
+- created
+    + channel create, delete and edit + API routes
+- added
+    + radio-group from shadcn-ui
