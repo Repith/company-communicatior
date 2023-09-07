@@ -110,7 +110,7 @@ export const MembersModal = () => {
           <DialogTitle className="text-2xl font-bold text-left">
             Manage Members
           </DialogTitle>
-          <DialogDescription className="text-left text-zinc-500">
+          <DialogDescription className="text-left ">
             {server?.members?.length} Members
           </DialogDescription>
         </DialogHeader>
@@ -124,7 +124,7 @@ export const MembersModal = () => {
                   {member.profile.name}
                   {roleIconMap[member.role]}
                 </div>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-zinc-400">
                   {member.profile.email}
                 </p>
               </div>

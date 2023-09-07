@@ -74,12 +74,12 @@ export const CreateServerModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="p-0 overflow-hidden text-black bg-white">
+      <DialogContent className="p-0 overflow-hidden dark:bg-[#2B2D31]">
         <DialogHeader className="px-6 pt-8">
-          <DialogTitle className="text-2xl font-bold text-center">
+          <DialogTitle className="text-2xl font-bold text-left">
             Customize your server
           </DialogTitle>
-          <DialogDescription className="text-center text-zinc-500">
+          <DialogDescription className="text-left ">
             {" "}
             Give your server a name and an image to get
             started. You can always change it later.
@@ -90,7 +90,7 @@ export const CreateServerModal = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-8"
           >
-            <div className="px-6 space-y-8">
+            <div className="px-6 pb-2">
               <div className="flex items-center justify-center text-center">
                 <FormField
                   control={form.control}
@@ -119,7 +119,7 @@ export const CreateServerModal = () => {
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="text-black border-0 bg-zinc-300/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+                        className="pl-2 border-0 text-primary bg-zinc-200 dark:bg-zinc-800 focus-visible:ring-0 focus-visible:ring-offset-0"
                         placeholder="Enter server name"
                         {...field}
                       />
@@ -129,7 +129,7 @@ export const CreateServerModal = () => {
                 )}
               />
             </div>
-            <DialogFooter className="px-6 py-4 bg-gray-100">
+            <DialogFooter className="px-6 py-4 bg-zinc-100 dark:bg-zinc-800">
               <Button
                 variant="primary"
                 disabled={isLoading}

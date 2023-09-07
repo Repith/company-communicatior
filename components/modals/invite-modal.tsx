@@ -57,7 +57,7 @@ export const InviteModal = () => {
       <DialogContent className="p-0 overflow-hidden dark:bg-[#2B2D31]">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-2xl font-bold text-left ">
-            Invite People
+            Invite Friends
           </DialogTitle>
         </DialogHeader>
         <div className="px-6 py-4">
@@ -65,7 +65,7 @@ export const InviteModal = () => {
             Server invite link
             <div className="flex items-center mt-2 gap-x-2">
               <Input
-                className="text-black border-0 bg-zinc-300/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="pl-2 border-0 text-primary bg-zinc-200 dark:bg-zinc-800 focus-visible:ring-0 focus-visible:ring-offset-0"
                 value={inviteUrl}
                 disabled={isLoading}
               />
@@ -84,7 +84,7 @@ export const InviteModal = () => {
             <Button
               variant="link"
               size="sm"
-              className="mt-4 text-xs text-zinc-500"
+              className="mt-4 text-xs text-zinc-400"
               disabled={isLoading}
               onClick={onNew}
             >

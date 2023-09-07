@@ -54,7 +54,7 @@ export const DeleteChannelModal = () => {
           <DialogTitle className="text-2xl font-bold text-left">
             Delete channel
           </DialogTitle>
-          <DialogDescription className="text-left text-zinc-500">
+          <DialogDescription className="text-left ">
             Are you sure you want to delete{" "}
             <span className="font-semibold text-indigo-500">
               #{channel?.name}?

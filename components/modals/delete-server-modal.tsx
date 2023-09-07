@@ -48,7 +48,7 @@ export const DeleteServerModal = () => {
           <DialogTitle className="text-2xl font-bold text-left">
             Delete server
           </DialogTitle>
-          <DialogDescription className="text-left text-zinc-500">
+          <DialogDescription className="text-left ">
             Are you sure you want to delete{" "}
             <span className="font-semibold text-indigo-500">
               {server?.name}?

@@ -67,12 +67,12 @@ export const InitialModal = () => {
   return (
     <MountedCheck>
       <Dialog open>
-        <DialogContent className="p-0 overflow-hidden text-black bg-white">
+        <DialogContent className="p-0 overflow-hidden dark:bg-[#2B2D31]">
           <DialogHeader className="px-6 pt-8">
             <DialogTitle className="text-2xl font-bold text-center">
               Customize your server
             </DialogTitle>
-            <DialogDescription className="text-center text-zinc-500">
+            <DialogDescription className="text-center ">
               {" "}
               Give your server a name and an image to get
               started. You can always change it later.
@@ -112,7 +112,7 @@ export const InitialModal = () => {
                       <FormControl>
                         <Input
                           disabled={isLoading}
-                          className="text-black border-0 bg-zinc-300/50 focus-visible:ring-0 focus-visible:ring-offset-0"
+                          className="pl-2 border-0 text-primary bg-zinc-200 dark:bg-zinc-800 focus-visible:ring-0 focus-visible:ring-offset-0"
                           placeholder="Enter server name"
                           {...field}
                         />
@@ -122,7 +122,7 @@ export const InitialModal = () => {
                   )}
                 />
               </div>
-              <DialogFooter className="px-6 py-4 bg-gray-100">
+              <DialogFooter className="px-6 py-4 bg-zinc-100 dark:bg-zinc-800">
                 <Button
                   variant="primary"
                   disabled={isLoading}
