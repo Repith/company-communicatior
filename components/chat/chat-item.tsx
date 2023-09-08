@@ -18,9 +18,9 @@ import {
 } from "@prisma/client";
 
 import {
+  Crown,
   Edit,
   FileIcon,
-  ShieldAlert,
   ShieldCheck,
   Trash,
 } from "lucide-react";
@@ -55,9 +55,7 @@ const roleIconMap = {
   MODERATOR: (
     <ShieldCheck className="w-4 h-4 ml-2 text-indigo-500" />
   ),
-  ADMIN: (
-    <ShieldAlert className="w-4 h-4 ml-2 text-rose-500" />
-  ),
+  ADMIN: <Crown className="w-4 h-4 ml-2 text-amber-600" />,
 };
 
 const formSchema = z.object({

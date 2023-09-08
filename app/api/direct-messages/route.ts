@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { DirectMessage } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { Message } from "@prisma/client";
 
 const MESSAGES_BATCH = 10;
 
@@ -12,7 +12,9 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
 
     const cursor = searchParams.get("cursor");
-    const channelId = searchParams.get("channelId");
+    const conversationId = searchParams.get(
+      "conversationId"
+    );
 
     if (!profile) {
       return new NextResponse("Unauthorized", {
@@ -20,23 +22,23 @@ export async function GET(req: Request) {
       });
     }
 
-    if (!channelId) {
-      return new NextResponse("Channel ID missing", {
+    if (!conversationId) {
+      return new NextResponse("Conversation ID missing", {
         status: 400,
       });
     }
 
-    let messages: Message[] = [];
+    let messages: DirectMessage[] = [];
 
     if (cursor) {
-      messages: await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGES_BATCH,
         skip: 1,
         cursor: {
           id: cursor,
         },
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -45,12 +47,15 @@ export async function GET(req: Request) {
             },
           },
         },
+        orderBy: {
+          createdAt: "desc",
+        },
       });
     } else {
-      messages = await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGES_BATCH,
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -68,7 +73,7 @@ export async function GET(req: Request) {
     let nextCursor = null;
 
     if (messages.length === MESSAGES_BATCH) {
-      nextCursor = messages[messages.length - 1].id;
+      nextCursor = messages[MESSAGES_BATCH - 1].id;
     }
 
     return NextResponse.json({
@@ -76,7 +81,7 @@ export async function GET(req: Request) {
       nextCursor,
     });
   } catch (error) {
-    console.log("[MESSAGES_GET", error);
+    console.log("[DIRECT_MESSAGES_GET]", error);
     return new NextResponse("Internal Error", {
       status: 500,
     });

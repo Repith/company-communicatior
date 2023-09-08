@@ -1,24 +1,10 @@
-- created 
-    + channel ID page, with header
-    + mobile toggle for navbar
-    + prisma schema 
-        -> messages (with boolean deletion)
-        -> conversation with recive and send separation
-        -> direct message
-    + conversation utility functions
-    + io connection with socket.io via old Next 12 pages/api
-        -> socket provider
-    + chat | message input component + API routing
-    + adjusted getAuth in current-profile-pages to work with socket.io and Next 12 pages system
-    + message-file-modal for adding uoploading files 
-    + emoji picker
-    + query provider
-    + chat-messages view component + API routing
-    + message editing and deletion
-
+- WebSocket bug fixed
+- set version of Next to 13.4.10 (to avoid errors)
+- changed next.config.js to fix socket.io error
+- created
+    + use-chat-socket for live reload
+    + use-chat-scroll for auto scrolling
+    + direct messages + API routing
+    + media-room for video calls
 - added
-    + sheet | badge from shadcn-ui
-    + socket.io + client
-    + tanstack/react-quert for message fetching
-    + date-fns
-- fixed mobile close button and UI for invite 
+    + livekit for video chat
