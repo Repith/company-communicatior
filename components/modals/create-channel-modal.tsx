@@ -213,6 +213,7 @@ export const CreateChannelModal = () => {
                           disabled={isLoading}
                           className="pl-2 border-0 text-primary bg-zinc-200 dark:bg-zinc-800/50 focus-visible:ring-0 focus-visible:ring-offset-0"
                           placeholder="Enter channel name"
+                          autoComplete="off"
                           {...field}
                         />
                       </div>
