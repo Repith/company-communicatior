@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { Message } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { Message } from "@prisma/client";
 
 const MESSAGES_BATCH = 10;
 
@@ -29,7 +29,7 @@ export async function GET(req: Request) {
     let messages: Message[] = [];
 
     if (cursor) {
-      messages: await db.message.findMany({
+      messages = await db.message.findMany({
         take: MESSAGES_BATCH,
         skip: 1,
         cursor: {
@@ -44,6 +44,9 @@ export async function GET(req: Request) {
               profile: true,
             },
           },
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
     } else {
@@ -68,7 +71,7 @@ export async function GET(req: Request) {
     let nextCursor = null;
 
     if (messages.length === MESSAGES_BATCH) {
-      nextCursor = messages[messages.length - 1].id;
+      nextCursor = messages[MESSAGES_BATCH - 1].id;
     }
 
     return NextResponse.json({
@@ -76,7 +79,7 @@ export async function GET(req: Request) {
       nextCursor,
     });
   } catch (error) {
-    console.log("[MESSAGES_GET", error);
+    console.log("[MESSAGES_GET]", error);
     return new NextResponse("Internal Error", {
       status: 500,
     });

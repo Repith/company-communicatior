@@ -23,15 +23,18 @@ export const useChatScroll = ({
 
     const handleScroll = () => {
       const scrollTop = topDiv?.scrollTop;
+
       if (scrollTop === 0 && shouldLoadMore) {
         loadMore();
       }
-
-      topDiv?.addEventListener("scroll", handleScroll);
-      return () =>
-        topDiv?.removeEventListener("scroll", handleScroll);
     };
-  }, [chatRef, shouldLoadMore, loadMore]);
+
+    topDiv?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      topDiv?.removeEventListener("scroll", handleScroll);
+    };
+  }, [shouldLoadMore, loadMore, chatRef]);
 
   useEffect(() => {
     const bottomDiv = bottomRef?.current;
@@ -55,8 +58,10 @@ export const useChatScroll = ({
 
     if (shouldAutoScroll()) {
       setTimeout(() => {
-        bottomDiv?.scrollIntoView({ behavior: "smooth" });
+        bottomRef.current?.scrollIntoView({
+          behavior: "smooth",
+        });
       }, 100);
     }
-  }, [count, bottomRef, chatRef, hasInitialized]);
+  }, [bottomRef, chatRef, count, hasInitialized]);
 };

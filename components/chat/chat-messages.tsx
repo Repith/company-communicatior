@@ -106,7 +106,7 @@ export const ChatMessages = ({
       {hasNextPage && (
         <div className="flex justify-center">
           {isFetchingNextPage ? (
-            <Loader2 className="w-6 h-6 text-zinc-500 animate-spin" />
+            <Loader2 className="w-6 h-6 my-4 text-zinc-500 animate-spin" />
           ) : (
             <button
               onClick={() => fetchNextPage()}
@@ -117,7 +117,6 @@ export const ChatMessages = ({
           )}
         </div>
       )}
-
       <div className="flex flex-col-reverse mt-auto">
         {data?.pages?.map((group, i) => (
           <Fragment key={i}>
